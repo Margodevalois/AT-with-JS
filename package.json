@@ -1,12 +1,19 @@
 {
   "name": "automated-testing-with-javascript",
   "version": "1.0.0",
-  "description": "",
+  "description": "unit testing home task",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "keywords": [],
   "author": "Margarita Zakharova",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "AT-with-JS"
+  },
+  "dependencies": {
+    "eslint": "^8.50.0"
+  }
 }
