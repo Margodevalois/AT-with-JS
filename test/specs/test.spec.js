@@ -37,4 +37,47 @@ describe("HOME TASK _Introduction to WebdriverIO", () => {
       const buttonStrategy = await $('li:nth-child(1) span.button__content--desktop'); // CSS Selector with Class and Child Selector
       expect(buttonStrategy).toBeClickable()
     });
+    // --------- basic commands
+    it("should have dark mode turned on", async () => { // waitForDisplayed()
+      const darkModeElement = await $('body.dark-mode');
+      await darkModeElement.waitForDisplayed();
+    });
+
+    it("should open burger menu", async () => { // isDisplayed()
+      await $('button.hamburger-menu__button').click();
+      const dropdownSection = await $('.hamburger-menu__dropdown-section');
+      expect(await dropdownSection.isDisplayed()).toBe(true);
+    });
+
+    it("should verify the presence of a 'Read more' button", async () => { // isExisting() waitForExist()
+      const readMoreButton = await $('a.custom-link');
+      await readMoreButton.waitForExist();
+      expect(await readMoreButton.isExisting()).toBe(true);
+    });
+
+    it("should have 7 buttons in Our Core Service", async () => {
+      const coreServices = await $('ul.buttons-list').$$('li');
+      expect(coreServices.length).toBe(7);
+    });
+
+    it("should show message about no results", async () => { // Replace default click with custom one that will wait for elements before clicking
+      await $('a[href="/careers"].top-navigation__item-link').waitForDisplayed();
+      await $('a[href="/careers"].top-navigation__item-link').click();
+      await $('input[id="new_form_job_search-keyword"]').setValue("singer");
+      await $('div.default-label').click();
+
+      const zeroResults = await $('span.search-result__error-message');
+      expect(await zeroResults.getText()).toEqual('Sorry, your search returned no results. Please try another combination.');
+    });
+
+    it("should add value", async () => {
+      await $('button.header-search__button').waitForDisplayed();
+      await $('button.header-search__button').click();
+      await $('input[id="new_form_search"]').addValue('My Neighbor');
+      await $('input[id="new_form_search"]').addValue('Totoro');
+      await $('span.bth-text-layer').click();
+
+      const findError = await $('div.search-results__exception-message');
+      expect(await findError.getText()).toEqual('Sorry, but your search returned no results. Please try another query.');
+    });
 });
