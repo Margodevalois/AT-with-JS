@@ -70,14 +70,14 @@ describe("HOME TASK _Introduction to WebdriverIO", () => {
       expect(await zeroResults.getText()).toEqual('Sorry, your search returned no results. Please try another combination.');
     });
 
-    it("should add value", async () => {
+    it("should add value", async () => { // addValue
       await $('button.header-search__button').waitForDisplayed();
       await $('button.header-search__button').click();
       await $('input[id="new_form_search"]').addValue('My Neighbor');
       await $('input[id="new_form_search"]').addValue('Totoro');
       await $('span.bth-text-layer').click();
 
-      const findError = await $('div.search-results__exception-message');
+      const findError = await $$('div.search-results__exception-message')[0];
       expect(await findError.getText()).toEqual('Sorry, but your search returned no results. Please try another query.');
     });
 });
