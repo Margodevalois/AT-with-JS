@@ -9,7 +9,9 @@ describe("HOME TASK_POM", () => {
   });
 
   it("should display 5 top navigation links", async () => {
-    await expect(ServicePage.HeaderNavigation).toHaveChildren(5);
+    // await expect(ServicePage.HeaderNavigation).toHaveChildren(5);
+    const nameField = ServicePage.HeaderNavigation;
+    await ServicePage.haveNavigation(nameField, 5);
   });
 
   it("should have a footer section", async () => {

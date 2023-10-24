@@ -29,6 +29,11 @@ class ServicePage extends BasePage {
     const element = await (inputElement);
     await element.addValue(value);
   }
+
+  async haveNavigation(selector, num) {
+    const element = await (selector);
+    await expect(element).toHaveChildren(num);
+  }
 }
 
 module.exports = new ServicePage();
