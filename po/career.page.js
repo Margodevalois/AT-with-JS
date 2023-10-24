@@ -1,10 +1,6 @@
 const BasePage = require('./basic.page');
 
 class CareersPage extends BasePage {
-  async open() {
-    await super.open('careers');
-  }
-
   get KeywordOrJobID() {
     return $('input[id="new_form_job_search-keyword"]');
   }
@@ -15,6 +11,19 @@ class CareersPage extends BasePage {
 
   get ResultMessage() {
     return $('span.search-result__error-message');
+  }
+
+  async open() {
+    await super.open('careers');
+  }
+
+  async getNameField() {
+    return this.KeywordOrJobID;
+  }
+
+  async setName(inputElement, value) {
+    const element = await (inputElement);
+    await element.setValue(value);
   }
 }
 

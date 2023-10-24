@@ -1,15 +1,4 @@
 class BasePage {
-  async open(path) {
-    await browser.url(path);
-  }
-
-  async customClick(selector) {
-    const element = await (selector);
-    await element.waitForExist();
-    await element.waitForDisplayed();
-    await element.click();
-  }
-
   get HeaderNavigation() {
     return $$('ul.top-navigation__row');
   }
@@ -44,6 +33,17 @@ class BasePage {
 
   get BurgerMenu() {
     return $('.hamburger-menu__dropdown-section');
+  }
+
+  async open(path) {
+    await browser.url(path);
+  }
+
+  async customClick(selector) {
+    const element = await (selector);
+    await element.waitForExist();
+    await element.waitForDisplayed();
+    await element.click();
   }
 
   async customStyle(element) {
